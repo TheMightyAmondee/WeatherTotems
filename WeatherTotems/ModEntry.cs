@@ -34,7 +34,7 @@ namespace WeatherTotems
 
 		public bool CanEdit<T>(IAssetInfo asset)
 		{
-			if (asset.AssetNameEquals("Data/ObjectInformation") || asset.AssetNameEquals("Maps/springobjects"))
+			if (asset.AssetNameEquals("Data/ObjectInformation") || asset.AssetNameEquals("Maps/springobjects") || asset.AssetNameEquals("Data/CraftingRecipes"))
 			{
 				return true;
 			}
@@ -61,6 +61,14 @@ namespace WeatherTotems
 				Texture2D sourceImage = this.Helper.Content.Load<Texture2D>("assets/totems.png", ContentSource.ModFolder);
 				editor.PatchImage(sourceImage, targetArea: new Rectangle(320, 608, 64, 16));
 			}
+			else if (asset.AssetNameEquals("Data/CraftingRecipes"))
+            {
+				IDictionary<string, string> data = asset.AsDictionary<string, string>().Data;
+				data["Sun Totem"] = "709 1 432 1 768 5/Field/932/false/Foraging 4";
+				data["Wind Totem"] = "709 1 432 1 725 5/Field/933/false/Foraging 4";
+				data["Snow Totem"] = "709 1 432 1 283 5/Field/934/false/Foraging 7";
+				data["Thunder Totem"] = "709 1 432 1 769 5/Field/935/false/Foraging 9";
+            }
 		}
 
 		public static void UseWeatherTotem(Farmer who, int totemtype, IModHelper helper)
