@@ -73,6 +73,8 @@ namespace WeatherTotems
 
 		public static void UseWeatherTotem(Farmer who, int totemtype, IModHelper helper)
 		{
+			var multiplayer = helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer").GetValue();
+
 			GameLocation.LocationContext location_context = Game1.currentLocation.GetLocationContext();
 			string message = "Nothing";
 
@@ -99,13 +101,33 @@ namespace WeatherTotems
 							message = "The crackle of electricity fills the air...";
 							break;
 					}
+
 					Game1.pauseThenMessage(2000, message, showProgressBar: false);
 				}
 			}
 			else
 			{
-				Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 1;
-				Game1.pauseThenMessage(2000, Game1.content.LoadString("Strings\\StringsFromCSFiles:Object.cs.12822"), showProgressBar: false);
+				switch (totemtype)
+				{
+					case 932:
+						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 0;
+						message = "Clouds vanish from the horizon...";
+						break;
+					case 933:
+						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 2;
+						message = "A gentle breeze passes by...";
+						break;
+					case 934:
+						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 5;
+						message = "The air gets colder around you...";
+						break;
+					case 935:
+						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 3;
+						message = "The crackle of electricity fills the air...";
+						break;
+				}
+
+				Game1.pauseThenMessage(2000, message, showProgressBar: false);				
 			}
 
 			Game1.screenGlow = false;
@@ -131,7 +153,40 @@ namespace WeatherTotems
 			{
 				new FarmerSprite.AnimationFrame(57, 2000, secondaryArm: false, flip: false, Farmer.canMoveNow, behaviorAtEndOfFrame: true)
 			});
+			for (int i = 0; i < 6; i++)
+			{
+				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+				{
+					motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+					delayBeforeAnimationStart = i * 200
+				});
+				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 1f, 0.01f, 0f, 0f)
+				{
+					motion = new Vector2((float)Game1.random.Next(-30, -10) / 10f, -1f),
+					delayBeforeAnimationStart = 100 + i * 200
+				});
+				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 1f, 0.01f, 0f, 0f)
+				{
+					motion = new Vector2((float)Game1.random.Next(10, 30) / 10f, -1f),
+					delayBeforeAnimationStart = 200 + i * 200
+				});
+			}
 			
+			multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(totemtype, 9999f, 1, 999, Game1.player.Position + new Vector2(0f, -96f), flicker: false, flipped: false, verticalFlipped: false, 0f)
+			{
+				motion = new Vector2(0f, -7f),
+				acceleration = new Vector2(0f, 0.1f),
+				scaleChange = 0.015f,
+				alpha = 1f,
+				alphaFade = 0.0075f,
+				shakeIntensity = 1f,
+				initialPosition = Game1.player.Position + new Vector2(0f, -96f),
+				xPeriodic = true,
+				xPeriodicLoopTime = 1000f,
+				xPeriodicRange = 4f,
+				layerDepth = 1f
+			});
+
 			DelayedAction.playSoundAfterDelay("rainsound", 2000);
 		}
 	}		
