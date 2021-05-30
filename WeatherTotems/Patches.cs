@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Objects;
 using StardewValley;
 using StardewModdingAPI;
+using xTile.Tiles;
 using Harmony;
 
 namespace WeatherTotems
@@ -52,7 +54,6 @@ namespace WeatherTotems
                                 break;
                         }
                         __result = true;
-                        Game1.player.removeFirstOfThisItemFromInventory(__instance.parentSheetIndex.Value);
                     }
                 }             
             }
@@ -76,6 +77,9 @@ namespace WeatherTotems
 
 			GameLocation.LocationContext location_context = Game1.currentLocation.GetLocationContext();
 			string message = "Nothing";
+			
+			Texture2D texture = helper.Content.Load<Texture2D>("assets/loosesprites.png", ContentSource.ModFolder);
+			string assetkey = helper.Content.GetActualAssetKey("assets/loosesprites.png", ContentSource.ModFolder);
 
 			if (location_context == GameLocation.LocationContext.Default)
 			{
@@ -152,23 +156,102 @@ namespace WeatherTotems
 			{
 				new FarmerSprite.AnimationFrame(57, 2000, secondaryArm: false, flip: false, Farmer.canMoveNow, behaviorAtEndOfFrame: true)
 			});
+
 			for (int i = 0; i < 6; i++)
 			{
-				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+				switch (totemtype)
+                {
+					case 932:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 933:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 934:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 935:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(645, 1079, 36, 56), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+				}
+				switch (totemtype)
 				{
-					motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
-					delayBeforeAnimationStart = i * 200
-				});
-				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 1f, 0.01f, 0f, 0f)
+					case 932:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 933:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 934:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 935:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+				}
+				switch (totemtype)
 				{
-					motion = new Vector2((float)Game1.random.Next(-30, -10) / 10f, -1f),
-					delayBeforeAnimationStart = 100 + i * 200
-				});
-				multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 1f, 0.01f, 0f, 0f)
-				{
-					motion = new Vector2((float)Game1.random.Next(10, 30) / 10f, -1f),
-					delayBeforeAnimationStart = 200 + i * 200
-				});
+					case 932:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 933:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 934:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+					case 935:
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite("LooseSprites\\Cursors", new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						{
+							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
+							delayBeforeAnimationStart = i * 200
+						});
+						break;
+				}
 			}
 
 			multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(totemtype, 9999f, 1, 999, Game1.player.Position + new Vector2(0f, -96f), flicker: false, flipped: false, verticalFlipped: false, 0f)
