@@ -162,14 +162,14 @@ namespace WeatherTotems
 				switch (totemtype)
                 {
 					case 932:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
 						});
 						break;
 					case 933:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(24, 0, 51, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
@@ -193,21 +193,21 @@ namespace WeatherTotems
 				switch (totemtype)
 				{
 					case 932:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
 						});
 						break;
 					case 933:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(24, 0, 51, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
 						});
 						break;
 					case 934:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(75, 0, 25, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
@@ -224,21 +224,21 @@ namespace WeatherTotems
 				switch (totemtype)
 				{
 					case 932:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(103, 4, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 24, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
 						});
 						break;
 					case 933:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(52, 6, 51, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(24, 0, 51, 24), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
 						});
 						break;
 					case 934:
-						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 52, 33), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+						multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey, new Microsoft.Xna.Framework.Rectangle(75, 0, 25, 25), 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 						{
 							motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 							delayBeforeAnimationStart = i * 200
