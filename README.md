@@ -8,8 +8,8 @@ This will of course have some interesting effects. You can make it snow in summe
 
 A few notes:
 - The wind and snow totem will not work on Ginger Island.
-- If a wind totem is used in summer or winter, the forcast will say it will snow. The weather will actually be windy so you can ignore this.
-- The mod may conflict with mods that edit the last four indexes of the Maps/springobjects asset.
+- If a wind totem is used in summer or winter, the forecast will say it will snow. The weather will actually be windy so you can ignore this.
+- The mod may conflict with mods that edit the last four spots of the Maps/springobjects asset, this is where the mod injects the totem sprites.
 
 ### The totems:
 
@@ -21,5 +21,5 @@ Snow Totem<br>*The air gets colder around you...* | 1 Hardwood<br>1 Truffle Oil<
 Thunder Totem<br>*The crackle of electricity fills the air...* | 1 Hardwood<br>1 Truffle Oil<br>5 Void Essence | Foraging Level 9
 
 ### Installation:
-This is a mod I made for my personal use due the possible incompatibilities and the fact someone else is also working on a similar mod, therefore it won't be officially released. 
+This is a mod I made for my personal use due to the possible incompatibilities and the fact someone else is also working on a similar mod, therefore it won't be officially released. 
 If you want to use the mod you'll need to download the source code and compile it yourself. Nevertheless, I'll leave the mod open source as a reference for other modders. 
