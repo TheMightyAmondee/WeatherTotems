@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using Harmony;
 
 
 namespace WeatherTotems
@@ -19,18 +17,11 @@ namespace WeatherTotems
 	{
 		public override void Entry(IModHelper helper)
 		{
-			Patches.Initialise(this.Monitor, this.Helper);
+			WeatherTotem.Initialise(this.Helper);
 
 			this.Monitor.Log("Initialising Harmony patches...", LogLevel.Trace);
 
 			helper.Events.Input.ButtonPressed += this.ButtonPressed;
-
-			var harmony = HarmonyInstance.Create(this.ModManifest.UniqueID);
-
-			harmony.Patch(
-				original: AccessTools.Method(typeof(StardewValley.Object), nameof(StardewValley.Object.isPlaceable)),
-				postfix: new HarmonyMethod(typeof(Patches), nameof(Patches.isPlaceable_Postfix))
-				);
 		}
 
 		// Get whether an asset can be edited
@@ -54,10 +45,10 @@ namespace WeatherTotems
 			{
 				IDictionary<int, string> data = asset.AsDictionary<int, string>().Data;
 
-				data[932] = "Sun Totem/20/-300/Crafting/Sun Totem/Activate to greatly increase the chance for sun tomorrow. Consumed on use.";
-				data[933] = "Wind Totem/20/-300/Crafting/Wind Totem/Activate to greatly increase the chance for wind tomorrow. Will not work on Ginger Island. Consumed on use.";
-				data[934] = "Snow Totem/20/-300/Crafting/Snow Totem/Activate to greatly increase the chance for snow tomorrow. Will not work on Ginger Island. Consumed on use.";
-				data[935] = "Thunder Totem/20/-300/Crafting/Thunder Totem/Activate to greatly increase the chance for a storm tomorrow. Consumed on use.";
+				data[932] = "Sun Totem/20/-300/Basic/Sun Totem/Activate to greatly increase the chance for sun tomorrow. Consumed on use.";
+				data[933] = "Wind Totem/20/-300/Basic/Wind Totem/Activate to greatly increase the chance for wind tomorrow. Will not work on Ginger Island. Consumed on use.";
+				data[934] = "Snow Totem/20/-300/Basic/Snow Totem/Activate to greatly increase the chance for snow tomorrow. Will not work on Ginger Island. Consumed on use.";
+				data[935] = "Thunder Totem/20/-300/Basic/Thunder Totem/Activate to greatly increase the chance for a storm tomorrow. Consumed on use.";
 			}
 			// Add totem sprites to springobjects asset
 			else if (asset.AssetNameEquals("Maps/springobjects"))
@@ -97,19 +88,19 @@ namespace WeatherTotems
 						switch (Game1.player.CurrentItem.parentSheetIndex.Value)
 						{
 							case 932:
-								Patches.UseWeatherTotem(Game1.player, 932, this.Helper);
+								WeatherTotem.UseWeatherTotem(Game1.player, 932);
 								this.Monitor.Log("Weather set to sunny tomorrow", LogLevel.Trace);
 								break;
 							case 933:
-								Patches.UseWeatherTotem(Game1.player, 933, this.Helper);
+								WeatherTotem.UseWeatherTotem(Game1.player, 933);
 								this.Monitor.Log("Weather set to windy tomorrow", LogLevel.Trace);
 								break;
 							case 934:
-								Patches.UseWeatherTotem(Game1.player, 934, this.Helper);
+								WeatherTotem.UseWeatherTotem(Game1.player, 934);
 								this.Monitor.Log("Weather set to snowy tomorrow", LogLevel.Trace);
 								break;
 							case 935:
-								Patches.UseWeatherTotem(Game1.player, 935, this.Helper);
+								WeatherTotem.UseWeatherTotem(Game1.player, 935);
 								this.Monitor.Log("Weather set to stormy tomorrow", LogLevel.Trace);
 								break;
 							default:

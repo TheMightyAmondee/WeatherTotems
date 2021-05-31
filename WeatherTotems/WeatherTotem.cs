@@ -1,42 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using StardewValley.Objects;
 using StardewValley;
 using StardewModdingAPI;
-using xTile.Tiles;
-using Harmony;
 
 namespace WeatherTotems
 {
 	// Inherit from Game1 to have access to the protected multiplayer field
-    public class Patches
+    public class WeatherTotem
 		: Game1
     {
         private static IModHelper helper;
-        private static IMonitor monitor;
 
 		// Get access to the required SMAPI apis
-        public static void Initialise(IMonitor monitor, IModHelper helper)
+        public static void Initialise( IModHelper helper)
         {
-            Patches.monitor = monitor;
-            Patches.helper = helper;
+            WeatherTotem.helper = helper;
         }
 
-        public static void isPlaceable_Postfix(StardewValley.Object __instance, ref bool __result)
-        {
-            // If the item is a weather totem it can't be placed, edit method to return false
-            if(__result == true && ((Utility.IsNormalObjectAtParentSheetIndex(__instance, 932) || Utility.IsNormalObjectAtParentSheetIndex(__instance, 933) || Utility.IsNormalObjectAtParentSheetIndex(__instance, 934) || Utility.IsNormalObjectAtParentSheetIndex(__instance, 935))))
-            {
-                __result = false;
-            }
-        }
-
-		public static void UseWeatherTotem(Farmer who, int totemtype, IModHelper helper)
+		public static void UseWeatherTotem(Farmer who, int totemtype)
 		{
 			// Get location context, (Main area or Ginger Island)
 			GameLocation.LocationContext location_context = Game1.currentLocation.GetLocationContext();
