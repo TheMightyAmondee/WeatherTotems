@@ -1,6 +1,8 @@
+<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/totemsenlarged.PNG" width = 448px>
+
 # WeatherTotems
 
-Weather Totems is a mod for Stardew Valley that adds an additional four totems to change the weather. Now you can also change the weather to be sunny, windy, snowy or stormy instead of just rainy.
+Weather Totems is a mod for Stardew Valley that adds an additional four totems to change the weather. Now you can also change the weather to be sunny, windy, snowy or stormy instead of just rainy. Each totem also has different activation animations.
 
 This will of course have some interesting effects. You can make it snow in summer if you want to!
 
