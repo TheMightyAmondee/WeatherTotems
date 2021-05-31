@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using Harmony;
 
 
@@ -22,12 +23,9 @@ namespace WeatherTotems
 
 			this.Monitor.Log("Initialising Harmony patches...", LogLevel.Trace);
 
-			var harmony = HarmonyInstance.Create(this.ModManifest.UniqueID);
+			helper.Events.Input.ButtonPressed += this.ButtonPressed;
 
-			harmony.Patch(
-				original: AccessTools.Method(typeof(StardewValley.Object), nameof(StardewValley.Object.performUseAction)),
-				postfix: new HarmonyMethod(typeof(Patches), nameof(Patches.performUseAction_Postfix))
-				);
+			var harmony = HarmonyInstance.Create(this.ModManifest.UniqueID);
 
 			harmony.Patch(
 				original: AccessTools.Method(typeof(StardewValley.Object), nameof(StardewValley.Object.isPlaceable)),
@@ -71,15 +69,54 @@ namespace WeatherTotems
 			}
 			// Add crafting recipes for totems
 			else if (asset.AssetNameEquals("Data/CraftingRecipes"))
-            {
+			{
 				IDictionary<string, string> data = asset.AsDictionary<string, string>().Data;
 				data["Sun Totem"] = "709 1 432 1 768 5/Field/932/false/Foraging 8";
 				data["Wind Totem"] = "709 1 432 1 725 5/Field/933/false/Foraging 4";
 				data["Snow Totem"] = "709 1 432 1 283 5/Field/934/false/Foraging 8";
 				data["Thunder Totem"] = "709 1 432 1 769 5/Field/935/false/Foraging 9";
-            }
+			}
 		}
 
-		
-	}		
+		private void ButtonPressed(object sender, ButtonPressedEventArgs e)
+		{
+			if (e.Button.IsActionButton() && Game1.player.CurrentItem != null && Game1.player.CurrentItem.parentSheetIndex.Value > 931 && Game1.player.CurrentItem.parentSheetIndex.Value < 936)
+			{
+				// Get whether totem can change whether
+				bool normal_gameplay = !Game1.eventUp && !Game1.isFestival() && !Game1.fadeToBlack && !Game1.player.swimming && !Game1.player.bathingClothes && !Game1.player.onBridge.Value;
+
+				// Is the item used one of the weather totems?
+				if (Game1.player.CurrentItem.Name != null && Game1.player.CurrentItem.Name.Contains("Totem"))
+				{
+					// Yes, can the totem update tomorrows weather?
+
+					if (normal_gameplay)
+					{
+						// Yes, which totem is it?
+						// Execute method with arguments based on the totem type
+						switch (Game1.player.CurrentItem.parentSheetIndex.Value)
+						{
+							case 932:
+								Patches.UseWeatherTotem(Game1.player, 932, this.Helper);
+								break;
+							case 933:
+								Patches.UseWeatherTotem(Game1.player, 933, this.Helper);
+								break;
+							case 934:
+								Patches.UseWeatherTotem(Game1.player, 934, this.Helper);
+								break;
+							case 935:
+								Patches.UseWeatherTotem(Game1.player, 935, this.Helper);
+								break;
+							default:
+								break;
+						}
+
+						Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.parentSheetIndex.Value);
+
+					}
+				}
+			}
+		}
+	}	
 }

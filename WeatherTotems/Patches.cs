@@ -27,51 +27,6 @@ namespace WeatherTotems
             Patches.helper = helper;
         }
 
-		// Applied immediately after the performAction method, the method that determines what to do with an object
-        public static void performUseAction_Postfix(StardewValley.Object __instance, GameLocation location, ref bool __result)
-        {
-            try
-            {
-				// Get whether totem can change whether
-                bool normal_gameplay = !Game1.eventUp && !Game1.isFestival() && !Game1.fadeToBlack && !Game1.player.swimming && !Game1.player.bathingClothes && !Game1.player.onBridge.Value;
-
-				// Is the item used one of the weather totems?
-                if (__instance.name != null && __instance.name.Contains("Totem") && __instance.parentSheetIndex.Value > 931)
-                {
-					// Yes, can the totem update tomorrows weather?
-
-                    if (normal_gameplay)
-                    {
-						// Yes, which totem is it?
-						// Execute method with arguments based on the totem type
-                        switch (__instance.parentSheetIndex.Value)
-                        {
-                            case 932:
-                                UseWeatherTotem(Game1.player, 932, helper);
-                                break;
-                            case 933:
-                                UseWeatherTotem(Game1.player, 933, helper);
-								break;
-                            case 934:
-                                UseWeatherTotem(Game1.player, 934, helper);
-								break;
-                            case 935:
-                                UseWeatherTotem(Game1.player, 935, helper);
-                                break;
-                            default:
-                                break;
-                        }
-						// As the item has done something, edit the performAction method to now return true, this prevents errors
-                        __result = true;
-                    }
-                }             
-            }
-            catch (Exception ex)
-            {
-                monitor.Log($"Failed in {nameof(performUseAction_Postfix)}:\n{ex}", LogLevel.Error);
-            }
-        }
-
         public static void isPlaceable_Postfix(StardewValley.Object __instance, ref bool __result)
         {
             // If the item is a weather totem it can't be placed, edit method to return false
@@ -159,7 +114,7 @@ namespace WeatherTotems
 					Game1.screenGlowOnce(Color.AliceBlue, hold: false);
 					break;
 				case 935:
-					Game1.screenGlowOnce(Color.DarkGray, hold: false);
+					Game1.screenGlowOnce(Color.DarkSlateBlue, hold: false);
 					break;
 			}
 			Game1.player.faceDirection(2);
