@@ -73,7 +73,7 @@ namespace WeatherTotems
 		{
 			if (e.Button.IsActionButton() && Game1.player.CurrentItem != null && Game1.player.CurrentItem.parentSheetIndex.Value > 931 && Game1.player.CurrentItem.parentSheetIndex.Value < 936)
 			{
-				// Get whether totem can change whether
+				// Get whether totem can change weather
 				bool normal_gameplay = !Game1.eventUp && !Game1.isFestival() && !Game1.fadeToBlack && !Game1.player.swimming && !Game1.player.bathingClothes && !Game1.player.onBridge.Value;
 
 				// Is the item used one of the weather totems?
