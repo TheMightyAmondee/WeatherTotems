@@ -21,5 +21,5 @@ A few notes:
 |<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/thundertotem.png" width = 64px><br>**Thunder Totem**<br>*The crackle of electricity fills the air...* | 1 Hardwood<br>1 Truffle Oil<br>5 Void Essence | Foraging Level 9
 
 ### Installation:
-This is a mod I made for my personal use. Due to the possible incompatibilities and the fact someone else is also working on a similar mod, it won't be officially released. 
-If you want to use the mod you'll need to download the source code and compile it yourself. Nevertheless, I'll leave the mod open source as a reference for other modders. 
+This is a mod I made for my personal use, as a result, it won't be officially released. 
+If you want to use the mod you'll need to download the source code and compile it yourself as well as have SMAPI installed. Nevertheless, I'll leave the mod open source as a reference for other modders, feel free to fork this repository. 
