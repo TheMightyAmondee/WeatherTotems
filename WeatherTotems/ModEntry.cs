@@ -55,8 +55,8 @@ namespace WeatherTotems
 				IDictionary<int, string> data = asset.AsDictionary<int, string>().Data;
 
 				data[932] = "Sun Totem/20/-300/Crafting/Sun Totem/Activate to greatly increase the chance for sun tomorrow. Consumed on use.";
-				data[933] = "Wind Totem/20/-300/Crafting/Wind Totem/Activate to greatly increase the chance for wind tomorrow. Consumed on use.";
-				data[934] = "Snow Totem/20/-300/Crafting/Snow Totem/Activate to greatly increase the chance for snow tomorrow. Consumed on use.";
+				data[933] = "Wind Totem/20/-300/Crafting/Wind Totem/Activate to greatly increase the chance for wind tomorrow. Will not work on Ginger Island. Consumed on use.";
+				data[934] = "Snow Totem/20/-300/Crafting/Snow Totem/Activate to greatly increase the chance for snow tomorrow. Will not work on Ginger Island. Consumed on use.";
 				data[935] = "Thunder Totem/20/-300/Crafting/Thunder Totem/Activate to greatly increase the chance for a storm tomorrow. Consumed on use.";
 			}
 			// Add totem sprites to springobjects asset
@@ -98,15 +98,19 @@ namespace WeatherTotems
 						{
 							case 932:
 								Patches.UseWeatherTotem(Game1.player, 932, this.Helper);
+								this.Monitor.Log("Weather set to sunny tomorrow", LogLevel.Trace);
 								break;
 							case 933:
 								Patches.UseWeatherTotem(Game1.player, 933, this.Helper);
+								this.Monitor.Log("Weather set to windy tomorrow", LogLevel.Trace);
 								break;
 							case 934:
 								Patches.UseWeatherTotem(Game1.player, 934, this.Helper);
+								this.Monitor.Log("Weather set to snowy tomorrow", LogLevel.Trace);
 								break;
 							case 935:
 								Patches.UseWeatherTotem(Game1.player, 935, this.Helper);
+								this.Monitor.Log("Weather set to stormy tomorrow", LogLevel.Trace);
 								break;
 							default:
 								break;
