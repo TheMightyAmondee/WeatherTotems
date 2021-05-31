@@ -13,12 +13,12 @@ A few notes:
 
 ### The totems:
 
-Totem | Crafting Recipe | When Crafting Recipe is Unlocked 
-------|-----------------|----------------------------------
-Sun Totem<br>*Clouds vanish from the horizon...* | 1 Hardwood<br>1 Truffle Oil<br>5 Solar Essence | Foraging Level 8
-Wind Totem<br>*A gentle breeze passes by...* | 1 Hardwood<br>1 Truffle Oil<br>5 Oak Resin | Foraging Level 4
-Snow Totem<br>*The air gets colder around you...* | 1 Hardwood<br>1 Truffle Oil<br>5 Holly | Foraging Level 8
-Thunder Totem<br>*The crackle of electricity fills the air...* | 1 Hardwood<br>1 Truffle Oil<br>5 Void Essence | Foraging Level 9
+| Totem | Crafting Recipe | When Crafting Recipe is Unlocked 
+|:-----:|-----------------|----------------------------------
+|<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/suntotem.png" width = 64px><br>**Sun Totem**<br>*Clouds vanish from the horizon...* | 1 Hardwood<br>1 Truffle Oil<br>5 Solar Essence | Foraging Level 8
+|<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/windtotem.png" width = 64px><br>**Wind Totem**<br>*A gentle breeze passes by...*  | 1 Hardwood<br>1 Truffle Oil<br>5 Oak Resin | Foraging Level 4
+|<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/snowtotem.png" width = 64px><br>**Snow Totem**<br>*The air gets colder around you...* | 1 Hardwood<br>1 Truffle Oil<br>5 Holly | Foraging Level 8
+|<img src = "https://github.com/TheMightyAmondee/WeatherTotems/blob/updates/Images/thundertotem.png" width = 64px><br>**Thunder Totem**<br>*The crackle of electricity fills the air...* | 1 Hardwood<br>1 Truffle Oil<br>5 Void Essence | Foraging Level 9
 
 ### Installation:
 This is a mod I made for my personal use due to the possible incompatibilities and the fact someone else is also working on a similar mod, therefore it won't be officially released. 
