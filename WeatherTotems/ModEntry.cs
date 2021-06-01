@@ -19,8 +19,6 @@ namespace WeatherTotems
 		{
 			WeatherTotem.Initialise(this.Helper);
 
-			this.Monitor.Log("Initialising Harmony patches...", LogLevel.Trace);
-
 			helper.Events.Input.ButtonPressed += this.ButtonPressed;
 		}
 
