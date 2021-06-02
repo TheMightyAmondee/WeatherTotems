@@ -25,7 +25,7 @@ namespace WeatherTotems
 		// Get whether an asset can be edited
 		public bool CanEdit<T>(IAssetInfo asset)
 		{
-			if (asset.AssetNameEquals("Data/ObjectInformation") || asset.AssetNameEquals("Maps/springobjects") || asset.AssetNameEquals("Data/CraftingRecipes"))
+			if (asset.AssetNameEquals("Data/ObjectInformation") == true || asset.AssetNameEquals("Maps/springobjects") == true || asset.AssetNameEquals("Data/CraftingRecipes") == true)
 			{
 				return true;
 			}
@@ -39,7 +39,7 @@ namespace WeatherTotems
 
 			// Add object data, indexes are the last four spots on the springobjects map so object can be added with a sprite
 			// This means the mod is incompatible with mods that edit this area or replace the asset
-			if (asset.AssetNameEquals("Data/ObjectInformation"))
+			if (asset.AssetNameEquals("Data/ObjectInformation") == true)
 			{
 				IDictionary<int, string> data = asset.AsDictionary<int, string>().Data;
 
@@ -49,7 +49,7 @@ namespace WeatherTotems
 				data[935] = "Thunder Totem/20/-300/Basic/Thunder Totem/Activate to greatly increase the chance for a storm tomorrow. Consumed on use.";
 			}
 			// Add totem sprites to springobjects asset
-			else if (asset.AssetNameEquals("Maps/springobjects"))
+			else if (asset.AssetNameEquals("Maps/springobjects") == true)
 			{
 				var editor = asset.AsImage();
 
@@ -57,7 +57,7 @@ namespace WeatherTotems
 				editor.PatchImage(sourceImage, targetArea: new Rectangle(320, 608, 64, 16));
 			}
 			// Add crafting recipes for totems
-			else if (asset.AssetNameEquals("Data/CraftingRecipes"))
+			else if (asset.AssetNameEquals("Data/CraftingRecipes") == true)
 			{
 				IDictionary<string, string> data = asset.AsDictionary<string, string>().Data;
 				data["Sun Totem"] = "709 1 432 1 768 5/Field/932/false/Foraging 8";
@@ -69,17 +69,28 @@ namespace WeatherTotems
 
 		private void ButtonPressed(object sender, ButtonPressedEventArgs e)
 		{
-			if (e.Button.IsActionButton() && Game1.player.CurrentItem != null && Game1.player.CurrentItem.parentSheetIndex.Value > 931 && Game1.player.CurrentItem.parentSheetIndex.Value < 936)
+			if (true 
+				&& e.Button.IsActionButton() == true 
+				&& Context.CanPlayerMove == true 
+				&& Game1.player.CurrentItem != null 
+				&& Game1.player.CurrentItem.parentSheetIndex.Value > 931 
+				&& Game1.player.CurrentItem.parentSheetIndex.Value < 936)
 			{
 				// Get whether totem can change weather
-				bool normal_gameplay = !Game1.eventUp && !Game1.isFestival() && !Game1.fadeToBlack && !Game1.player.swimming && !Game1.player.bathingClothes && !Game1.player.onBridge.Value;
+				bool normal_gameplay = true 
+					&& Game1.eventUp == false 
+					&& Game1.isFestival() == false 
+					&& Game1.fadeToBlack == false 
+					&& Game1.player.swimming == false 
+					&& Game1.player.bathingClothes == false 
+					&& Game1.player.onBridge.Value == false;
 
 				// Is the item used one of the weather totems?
-				if (Game1.player.CurrentItem.Name != null && Game1.player.CurrentItem.Name.Contains("Totem"))
+				if (Game1.player.CurrentItem.Name != null && Game1.player.CurrentItem.Name.Contains("Totem") == true)
 				{
 					// Yes, can the totem update tomorrows weather?
 
-					if (normal_gameplay)
+					if (normal_gameplay == true)
 					{
 						// Yes, which totem is it?
 						// Execute method with arguments based on the totem type

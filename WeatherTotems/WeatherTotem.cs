@@ -32,7 +32,7 @@ namespace WeatherTotems
 			// Change weather based on totem type
 			if (location_context == GameLocation.LocationContext.Default)
 			{
-				if (!Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.currentSeason))
+				if (Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.currentSeason) == false)
 				{
 					switch (totemtype)
 					{
