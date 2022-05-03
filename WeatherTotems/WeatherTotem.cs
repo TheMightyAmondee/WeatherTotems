@@ -27,7 +27,7 @@ namespace WeatherTotems
 			string message = "Nothing";
 			
 			// Get asset key for animation sprites
-			string assetkey = helper.Content.GetActualAssetKey("assets/loosesprites.png", ContentSource.ModFolder);
+			string assetkey = helper.ModContent.GetInternalAssetName("assets/loosesprites.png").Name;
 
 			// Change weather based on totem type
 			if (location_context == GameLocation.LocationContext.Default)
