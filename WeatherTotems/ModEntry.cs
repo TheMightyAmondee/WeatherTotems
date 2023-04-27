@@ -72,16 +72,16 @@ namespace WeatherTotems
 				&& e.Button.IsActionButton() == true 
 				&& Context.CanPlayerMove == true 
 				&& Game1.player.CurrentItem != null 
-				&& Game1.player.CurrentItem.parentSheetIndex.Value > 931 
-				&& Game1.player.CurrentItem.parentSheetIndex.Value < 936)
+				&& Game1.player.CurrentItem.ParentSheetIndex > 931 
+				&& Game1.player.CurrentItem.ParentSheetIndex < 936)
 			{
 				// Get whether totem can change weather
 				bool normal_gameplay = true 
 					&& Game1.eventUp == false 
 					&& Game1.isFestival() == false 
 					&& Game1.fadeToBlack == false 
-					&& Game1.player.swimming == false 
-					&& Game1.player.bathingClothes == false 
+					&& Game1.player.swimming.Value == false 
+					&& Game1.player.bathingClothes.Value == false 
 					&& Game1.player.onBridge.Value == false;
 
 				// Is the item used one of the weather totems?
@@ -93,7 +93,7 @@ namespace WeatherTotems
 					{
 						// Yes, which totem is it?
 						// Execute method with arguments based on the totem type
-						switch (Game1.player.CurrentItem.parentSheetIndex.Value)
+						switch (Game1.player.CurrentItem.ParentSheetIndex)
 						{
 							case 932:
 								WeatherTotem.UseWeatherTotem(Game1.player, 932);
@@ -115,7 +115,7 @@ namespace WeatherTotems
 								break;
 						}
 
-						Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.parentSheetIndex.Value);
+						Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.ParentSheetIndex);
 
 					}
 				}
