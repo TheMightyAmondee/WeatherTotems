@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StardewValley.Objects;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewModdingAPI;
 
 namespace WeatherTotems
 {
-	// Inherit from Game1 to have access to the protected multiplayer field
+	// Inherit from TV to have access to the protected fields
     public class WeatherTotem
-		: Game1
     {
         private static IModHelper helper;
 
@@ -20,10 +20,12 @@ namespace WeatherTotems
             WeatherTotem.helper = helper;
         }
 
-		public static void UseWeatherTotem(Farmer who, int totemtype)
+        public static bool UseWeatherTotem(Farmer who, int totemtype)
 		{
-			// Get location context, (Main area or Ginger Island)
-			GameLocation.LocationContext location_context = Game1.currentLocation.GetLocationContext();
+            var multiplayer = helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer").GetValue();
+
+            // Get location context, (Main area or Ginger Island)
+            GameLocation.LocationContext location_context = Game1.currentLocation.GetLocationContext();
 			string message = "Nothing";
 			
 			// Get asset key for animation sprites
@@ -66,19 +68,18 @@ namespace WeatherTotems
 						message = "Clouds vanish from the horizon...";
 						break;
 					case 933:
-						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 2;
-						message = "A gentle breeze passes by...";
-						break;
-					case 934:
-						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 5;
-						message = "The air gets colder around you...";
-						break;
+						//Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 2;
+                        message = "This won't work here...";
+                        return false;
+                    case 934:
+						//Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 5;
+						message = "This won't work here...";
+						return false;
 					case 935:
 						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 3;
 						message = "The crackle of electricity fills the air...";
 						break;
 				}
-
 				Game1.pauseThenMessage(2000, message, showProgressBar: false);
 			}
 
@@ -159,6 +160,7 @@ namespace WeatherTotems
 			});
 
 			DelayedAction.playSoundAfterDelay("rainsound", 2000);
+			return true;
 		}
 	}
 }

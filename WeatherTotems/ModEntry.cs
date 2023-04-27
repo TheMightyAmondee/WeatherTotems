@@ -15,6 +15,7 @@ namespace WeatherTotems
 	public class ModEntry
 		: Mod
 	{
+		private static bool success = false;
 		public override void Entry(IModHelper helper)
 		{
 			WeatherTotem.Initialise(this.Helper);
@@ -91,31 +92,35 @@ namespace WeatherTotems
 
 					if (normal_gameplay == true)
 					{
+						success = false;
 						// Yes, which totem is it?
 						// Execute method with arguments based on the totem type
 						switch (Game1.player.CurrentItem.ParentSheetIndex)
 						{
 							case 932:
-								WeatherTotem.UseWeatherTotem(Game1.player, 932);
+								success = WeatherTotem.UseWeatherTotem(Game1.player, 932);
 								this.Monitor.Log("Weather set to sunny tomorrow", LogLevel.Trace);
 								break;
 							case 933:
-								WeatherTotem.UseWeatherTotem(Game1.player, 933);
+                                success = WeatherTotem.UseWeatherTotem(Game1.player, 933);
 								this.Monitor.Log("Weather set to windy tomorrow", LogLevel.Trace);
 								break;
 							case 934:
-								WeatherTotem.UseWeatherTotem(Game1.player, 934);
+								success = WeatherTotem.UseWeatherTotem(Game1.player, 934);
 								this.Monitor.Log("Weather set to snowy tomorrow", LogLevel.Trace);
 								break;
 							case 935:
-								WeatherTotem.UseWeatherTotem(Game1.player, 935);
+								success = WeatherTotem.UseWeatherTotem(Game1.player, 935);
 								this.Monitor.Log("Weather set to stormy tomorrow", LogLevel.Trace);
 								break;
 							default:
 								break;
 						}
 
-						Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.ParentSheetIndex);
+						if (success == true)
+						{
+                            Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.ParentSheetIndex);
+                        }						
 
 					}
 				}
