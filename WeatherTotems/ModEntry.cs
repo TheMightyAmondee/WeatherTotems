@@ -93,25 +93,26 @@ namespace WeatherTotems
 					if (normal_gameplay == true)
 					{
 						success = false;
+
 						// Yes, which totem is it?
 						// Execute method with arguments based on the totem type
 						switch (Game1.player.CurrentItem.ParentSheetIndex)
 						{
 							case 932:
 								success = WeatherTotem.UseWeatherTotem(Game1.player, 932);
-								this.Monitor.Log("Weather set to sunny tomorrow", LogLevel.Trace);
+								this.Monitor.Log("Try set to sunny weather tomorrow", LogLevel.Trace);
 								break;
 							case 933:
                                 success = WeatherTotem.UseWeatherTotem(Game1.player, 933);
-								this.Monitor.Log("Weather set to windy tomorrow", LogLevel.Trace);
+								this.Monitor.Log("Try set to windy weather tomorrow", LogLevel.Trace);
 								break;
 							case 934:
 								success = WeatherTotem.UseWeatherTotem(Game1.player, 934);
-								this.Monitor.Log("Weather set to snowy tomorrow", LogLevel.Trace);
+								this.Monitor.Log("Try set to snowy weather tomorrow", LogLevel.Trace);
 								break;
 							case 935:
 								success = WeatherTotem.UseWeatherTotem(Game1.player, 935);
-								this.Monitor.Log("Weather set to stormy tomorrow", LogLevel.Trace);
+								this.Monitor.Log("Try set to stormy weather tomorrow", LogLevel.Trace);
 								break;
 							default:
 								break;
@@ -120,7 +121,14 @@ namespace WeatherTotems
 						if (success == true)
 						{
                             Game1.player.removeFirstOfThisItemFromInventory(Game1.player.CurrentItem.ParentSheetIndex);
-                        }						
+                            this.Monitor.Log("Weather set successfully", LogLevel.Trace);
+                        }
+						else
+						{
+							var hudmessage = new HUDMessage("This totem won't work here", 3);
+                            this.Monitor.Log("Failed to set weather", LogLevel.Trace);
+                            Game1.addHUDMessage(hudmessage);
+						}
 
 					}
 				}

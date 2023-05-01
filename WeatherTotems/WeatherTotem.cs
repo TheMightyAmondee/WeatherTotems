@@ -68,12 +68,8 @@ namespace WeatherTotems
 						message = "Clouds vanish from the horizon...";
 						break;
 					case 933:
-						//Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 2;
-                        message = "This won't work here...";
                         return false;
                     case 934:
-						//Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 5;
-						message = "This won't work here...";
 						return false;
 					case 935:
 						Game1.netWorldState.Value.GetWeatherForLocation(location_context).weatherForTomorrow.Value = 3;
