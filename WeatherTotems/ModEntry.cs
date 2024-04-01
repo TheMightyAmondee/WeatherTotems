@@ -25,26 +25,6 @@ namespace WeatherTotems
 			i18n.gethelpers(helper.Translation);
 
 			helper.Events.Input.ButtonPressed += this.ButtonPressed;
-			helper.Events.Content.AssetRequested += this.AssetRequested;
-		}
-
-		private void AssetRequested(object sender, AssetRequestedEventArgs e)
-        {
-
-			// Add crafting recipes for totems
-			if (e.NameWithoutLocale.IsEquivalentTo("Data/CraftingRecipes") == true)
-			{
-				e.Edit(asset =>
-				{
-					IDictionary<string, string> data = asset.AsDictionary<string, string>().Data;
-					data["Sun Totem"] = "709 1 432 1 768 5/Field/TheMightyAmondee.WeatherTotemsCP_SunTotem/false/Foraging 8";
-					data["Wind Totem"] = "709 1 432 1 725 5/Field/TheMightyAmondee.WeatherTotemsCP_WindTotem/false/Foraging 4";
-					data["Snow Totem"] = "709 1 432 1 283 5/Field/TheMightyAmondee.WeatherTotemsCP_SnowTotem/false/Foraging 8";
-					data["Thunder Totem"] = "709 1 432 1 769 5/Field/TheMightyAmondee.WeatherTotemsCP_ThunderTotem/false/Foraging 9";
-                    data["Green Rain Totem"] = "709 1 432 1 Moss 50/Field/TheMightyAmondee.WeatherTotemsCP_GreenRainTotem/false/Foraging 9";
-                });
-				
-			}
 		}
 
 		private void ButtonPressed(object sender, ButtonPressedEventArgs e)
