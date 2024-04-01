@@ -1,0 +1,55 @@
+﻿using System;
+using StardewValley;
+using StardewModdingAPI;
+
+namespace WeatherTotems
+{
+    internal static class i18n
+    {
+        private static ITranslationHelper translation;
+        public static void gethelpers(ITranslationHelper translation)
+        {
+            i18n.translation = translation;
+        }
+        public static string string_SunTotemUse()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/SunTotemUse");
+        }
+        public static string string_WindTotemUse()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/WindTotemUse");
+        }
+        public static string string_SnowTotemUse()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/SnowTotemUse");
+        }
+        public static string string_ThunderTotemUse()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/ThunderTotemUse");
+        }
+        public static string string_GreenRainTotemUse()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/GreenRainTotemUse");
+        }
+        public static string string_Error()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/Error");
+        }
+
+        /// <summary>
+        /// Gets the correct translation
+        /// </summary>
+        /// <param name="key">The translation key</param>
+        /// <param name="tokens">Tokens, if any</param>
+        /// <returns>The translated string</returns>
+        public static Translation GetTranslation(string key, object tokens = null)
+        {
+            if (i18n.translation == null)
+            {
+                throw new InvalidOperationException($"You must call {nameof(i18n)}.{nameof(i18n.gethelpers)} from the mod's entry method before reading translations.");
+            }
+
+            return i18n.translation.Get(key, tokens);
+        }
+    }
+}
