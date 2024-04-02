@@ -2,14 +2,13 @@
 
 # Weather Totems
 
-Weather Totems is a mod for [Stardew Valley](https://www.stardewvalley.net/) that adds an additional five totems to change the weather. Now you can also change the weather to be sunny, windy, snowy, stormy or green rainy instead of just rainy. Each totem also has different activation animations.
+Weather Totems is a mod for [Stardew Valley](https://www.stardewvalley.net/) that adds an additional five totems to change the weather. Now you can also change the weather to be sunny, windy, snowy, stormy or green rainy instead of just rainy. Each totem also has different activation animations. Only the sun totem will work on Ginger Island due to weather restrictions.
 
 This will of course have some interesting effects. You can make it snow in summer if you want to!
 
 A few notes:
 - If a wind totem is used in summer or winter, the forecast will say it will snow. The weather will actually be windy so you can ignore this.
 - The green rain totem will only work in summer.
-- If a save is exited and reloaded on a totem green rain day, hybrid green rain/rain weather will occur. Foliage will behave as if it is green rain but other game behaviour will act as though it is normal rain. I'd recommend to play through the full day to avoid this issue.
 
 ### The totems:
 
