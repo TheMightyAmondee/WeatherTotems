@@ -10,6 +10,8 @@ using StardewValley.Objects;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley.GameData.Objects;
+using StardewValley.Logging;
+using StardewValley.Network;
 
 namespace WeatherTotems
 {
@@ -21,13 +23,52 @@ namespace WeatherTotems
 		private static List<string> totems = new List<string>() { "TheMightyAmondee.WeatherTotemsCP_SunTotem", "TheMightyAmondee.WeatherTotemsCP_WindTotem", "TheMightyAmondee.WeatherTotemsCP_SnowTotem", "TheMightyAmondee.WeatherTotemsCP_ThunderTotem", "TheMightyAmondee.WeatherTotemsCP_GreenRainTotem" };
 		public override void Entry(IModHelper helper)
 		{
-			WeatherTotem.Initialise(this.Helper);
+			WeatherTotem.Initialise(this.Helper, this.ModManifest);
 			i18n.gethelpers(helper.Translation);
 
 			helper.Events.Input.ButtonPressed += this.ButtonPressed;
+			helper.Events.Specialized.LoadStageChanged += this.LoadStageChanged;
+			helper.Events.GameLoop.DayStarted += this.DayStarted;
 		}
 
-		private void ButtonPressed(object sender, ButtonPressedEventArgs e)
+        private void LoadStageChanged(object sender, LoadStageChangedEventArgs e)
+		{
+			var modData = Game1.player.modData;
+
+            if (e.NewStage == StardewModdingAPI.Enums.LoadStage.Loaded && modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") && modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
+			{
+				StartGreenRain();
+			}
+		}
+
+        private void DayStarted(object sender, DayStartedEventArgs e)
+        {
+			var modData = Game1.player.modData;
+            if (modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") == false)
+            {
+				modData.Add($"{this.ModManifest.UniqueID}/GreenTotemUse", "false");
+                
+            }
+			else if (modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
+			{
+				modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] = "false";
+            }
+        }
+
+        public static void StartGreenRain()
+        {
+            string contextId = Game1.player.currentLocation.GetLocationContextId();
+            LocationWeather weather = Game1.netWorldState.Value.GetWeatherForLocation(contextId);
+            weather.IsGreenRain = !weather.IsGreenRain;
+            weather.IsDebrisWeather = false;
+            if (contextId == "Default")
+            {
+                Game1.isRaining = weather.IsRaining;
+                Game1.isGreenRain = weather.IsGreenRain;
+                Game1.isDebrisWeather = false;
+            }
+        }
+        private void ButtonPressed(object sender, ButtonPressedEventArgs e)
 		{
 			if (true 
 				&& e.Button.IsActionButton() == true 

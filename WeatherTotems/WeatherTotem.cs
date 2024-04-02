@@ -16,11 +16,13 @@ namespace WeatherTotems
     public class WeatherTotem
     {
         private static IModHelper helper;
+        private static IManifest manifest;
 
-		// Get access to the required SMAPI apis
-        public static void Initialise( IModHelper helper)
+        // Get access to the required SMAPI apis
+        public static void Initialise( IModHelper helper, IManifest manifest)
         {
             WeatherTotem.helper = helper;
+            WeatherTotem.manifest = manifest;
         }
 
 		private static void SetWeather(string weather)
@@ -35,6 +37,10 @@ namespace WeatherTotems
             else
             {
                 Game1.currentLocation.GetWeather().WeatherForTomorrow = weather;
+            }
+            if (weather == "GreenRain")
+            {
+                Game1.player.modData[$"{manifest.UniqueID}/GreenTotemUse"] = "true";
             }
         }
 
@@ -97,18 +103,11 @@ namespace WeatherTotems
                         }
                         break;
                     case 4:
-                        if (Game1.season == Season.Summer && Game1.dayOfMonth != 28)
+                        if (Game1.season == Season.Summer && Game1.dayOfMonth != 28 && location_context == "Default")
                         {
-                            foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
-                            {
-                                if (weather.Weather == "GreenRain")
-                                {
-                                    SetWeather("GreenRain");
-                                    message = i18n.string_GreenRainTotemUse();
-                                    changedweather = true;
-                                    break;
-                                }
-                            }
+                            SetWeather("GreenRain");
+                            message = i18n.string_GreenRainTotemUse();
+                            changedweather = true;
                         }                       
                         break;
                 }
