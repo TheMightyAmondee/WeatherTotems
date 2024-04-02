@@ -9,6 +9,7 @@ This will of course have some interesting effects. You can make it snow in summe
 A few notes:
 - If a wind totem is used in summer or winter, the forecast will say it will snow. The weather will actually be windy so you can ignore this.
 - The green rain totem will only work in summer.
+- If a save is exited and reloaded on a totem green rain day, hybrid green rain/rain weather will occur. Foliage will behave as if it is green rain but other game behaviour will act as though it is normal rain. I'd recommend to play through the full day to avoid this issue.
 
 ### The totems:
 
@@ -23,6 +24,7 @@ A few notes:
 ### Installation:
 1. This is the code component only, the full mod including content patcher part must be downloaded on Nexus
 
-### UnInstallating:
+### Uninstalling:
 Safe to uninstall at any time, totems will be turned into error items which can be trashed.
 1. Remove mod from Mods folder
+2. That's it!

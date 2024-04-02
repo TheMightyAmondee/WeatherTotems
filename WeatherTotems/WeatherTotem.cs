@@ -13,7 +13,6 @@ using xTile.Dimensions;
 
 namespace WeatherTotems
 {
-	// Inherit from TV to have access to the protected fields
     public class WeatherTotem
     {
         private static IModHelper helper;
@@ -44,7 +43,7 @@ namespace WeatherTotems
             var multiplayer = helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer").GetValue();
 			bool changedweather = false;
 
-            // Get location context, (Main area or Ginger Island)
+            // Get location context
             var location_context = Game1.currentLocation.GetLocationContextId();		
 			string message = "Nothing";
 			
