@@ -19,10 +19,10 @@ A few notes:
 |<img src = https://i.imgur.com/whkRaNe.png width = 64px><br>**Wind Totem**<br>*A gentle breeze passes by...*  | 1 Hardwood<br>1 Truffle Oil<br>5 Oak Resin | Foraging Level 4
 |<img src = https://i.imgur.com/MJ4avPE.png width = 64px><br>**Snow Totem**<br>*The air gets colder around you...* | 1 Hardwood<br>1 Truffle Oil<br>5 Holly | Foraging Level 8
 |<img src = https://i.imgur.com/1C7rcgw.png width = 64px><br>**Thunder Totem**<br>*The crackle of electricity fills the air...* | 1 Hardwood<br>1 Truffle Oil<br>5 Void Essence | Foraging Level 9
-|<img src = https://i.imgur.com/udnRrKX.png width = 64px><br>**Green Rain Totem**<br>*Nature whispers to you...* | 1 Hardwood<br>1 Truffle Oil<br>50 Moss | Foraging Level 9
+|<img src = https://i.imgur.com/udnRrKX.png width = 64px><br>**Green Rain Totem**<br>*Nature whispers to you...* | 1 Hardwood<br>1 Truffle Oil<br>150 Moss | Foraging Level 9
 
 ### Installation:
-1. This is the code component only, the full mod including content patcher part must be downloaded on Nexus
+1. This is the code component only, the full mod including content patcher part must be downloaded on [Nexus](https://www.nexusmods.com/stardewvalley/mods/21539)
 
 ### Uninstalling:
 Safe to uninstall at any time, totems will be turned into error items which can be trashed.
