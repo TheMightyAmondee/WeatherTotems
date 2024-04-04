@@ -42,6 +42,10 @@ namespace WeatherTotems
             {
                 Game1.player.modData[$"{manifest.UniqueID}/GreenTotemUse"] = "true";
             }
+            else
+            {
+                Game1.player.modData[$"{manifest.UniqueID}/GreenTotemUse"] = "false";
+            }
         }
 
         public static bool UseWeatherTotem(Farmer who, int totemtype)
