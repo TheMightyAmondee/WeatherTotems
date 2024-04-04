@@ -33,32 +33,39 @@ namespace WeatherTotems
 
         private void LoadStageChanged(object sender, LoadStageChangedEventArgs e)
 		{
-			var modData = Game1.player.modData;
-
-            if (e.NewStage == StardewModdingAPI.Enums.LoadStage.Loaded && modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") && modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
+			foreach(var farmer in Game1.getAllFarmers())
 			{
-				StartGreenRain();
-			}
+                var modData = farmer.modData;
+
+                if (e.NewStage == StardewModdingAPI.Enums.LoadStage.Loaded && modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") && modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
+                {
+                    StartGreenRain();
+                }
+            }			
 		}
 
         private void DayStarted(object sender, DayStartedEventArgs e)
         {
-			var modData = Game1.player.modData;
-            if (modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") == false)
+            foreach (var farmer in Game1.getAllFarmers())
             {
-				modData.Add($"{this.ModManifest.UniqueID}/GreenTotemUse", "false");
-                
+                var modData = farmer.modData;
+                if (modData.ContainsKey($"{this.ModManifest.UniqueID}/GreenTotemUse") == false)
+                {
+                    modData.Add($"{this.ModManifest.UniqueID}/GreenTotemUse", "false");
+
+                }
+                else if (modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
+                {
+                    modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] = "false";
+                }
             }
-			else if (modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] == "true")
-			{
-				modData[$"{this.ModManifest.UniqueID}/GreenTotemUse"] = "false";
-            }
+           
         }
 
         public static void StartGreenRain()
         {
             LocationWeather weather = Game1.netWorldState.Value.GetWeatherForLocation("Default");
-            weather.IsGreenRain = !weather.IsGreenRain;
+            weather.IsGreenRain = true;
             weather.IsDebrisWeather = false;
             Game1.isRaining = weather.IsRaining;
             Game1.isGreenRain = weather.IsGreenRain;
