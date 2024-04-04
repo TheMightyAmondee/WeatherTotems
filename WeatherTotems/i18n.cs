@@ -36,6 +36,11 @@ namespace WeatherTotems
             return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/Error");
         }
 
+        public static string string_ErrorFestival()
+        {
+            return i18n.GetTranslation("TheMightyAmondee.WeatherTotems/ErrorFestival");
+        }
+
         /// <summary>
         /// Gets the correct translation
         /// </summary>

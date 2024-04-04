@@ -29,7 +29,7 @@ namespace WeatherTotems
 		{
             if (Game1.currentLocation.GetLocationContextId() == "Default")
             {
-                if (!Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season))
+                if (Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) == false)
                 {
                     Game1.netWorldState.Value.WeatherForTomorrow = (Game1.weatherForTomorrow = weather);
                 }
@@ -56,71 +56,68 @@ namespace WeatherTotems
 			// Get asset key for animation sprites
 			string assetkey = helper.ModContent.GetInternalAssetName("assets/loosesprites.png").Name;
 
-            if (Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) == false)
+            switch (totemtype)
             {
-                switch (totemtype)
-                {
-                    case 0:
-                        SetWeather("Sun");                      
-                        message = i18n.string_SunTotemUse();
-						changedweather = true;
-                        break;
-                    case 1:
-                        foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
+                case 0:
+                    SetWeather("Sun");
+                    message = i18n.string_SunTotemUse();
+                    changedweather = true;
+                    break;
+                case 1:
+                    foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
+                    {
+                        if (weather.Weather == "Wind")
                         {
-                            if (weather.Weather == "Wind")
-                            {
-                                SetWeather("Wind");
-                                message = i18n.string_WindTotemUse();
-								changedweather = true;
-                                break;
-                            }
-                        }
-                        break;
-                    case 2:
-                        foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
-                        {
-                            if (weather.Weather == "Snow")
-                            {
-                                SetWeather("Snow");
-                                message = i18n.string_SnowTotemUse();
-                                changedweather = true;
-                                break;
-                            }
-                        }
-
-                        break;
-                    case 3:
-                        foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
-                        {
-                            if (weather.Weather == "Storm")
-                            {
-                                SetWeather("Storm");
-                                message = i18n.string_ThunderTotemUse();
-                                changedweather = true;
-                                break;
-                            }
-                        }
-                        break;
-                    case 4:
-                        if (Game1.season == Season.Summer && Game1.dayOfMonth != 28 && location_context == "Default")
-                        {
-                            SetWeather("GreenRain");
-                            message = i18n.string_GreenRainTotemUse();
+                            SetWeather("Wind");
+                            message = i18n.string_WindTotemUse();
                             changedweather = true;
-                        }                       
-                        break;
-                }
-				if (changedweather == false)
-				{
-					return changedweather;
-				}
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
+                    {
+                        if (weather.Weather == "Snow")
+                        {
+                            SetWeather("Snow");
+                            message = i18n.string_SnowTotemUse();
+                            changedweather = true;
+                            break;
+                        }
+                    }
 
-                Game1.pauseThenMessage(2000, message);
-            }        
+                    break;
+                case 3:
+                    foreach (var weather in Game1.currentLocation.GetLocationContext().WeatherConditions)
+                    {
+                        if (weather.Weather == "Storm")
+                        {
+                            SetWeather("Storm");
+                            message = i18n.string_ThunderTotemUse();
+                            changedweather = true;
+                            break;
+                        }
+                    }
+                    break;
+                case 4:
+                    if (Game1.season == Season.Summer && Game1.dayOfMonth != 28 && location_context == "Default")
+                    {
+                        SetWeather("GreenRain");
+                        message = i18n.string_GreenRainTotemUse();
+                        changedweather = true;
+                    }
+                    break;
+            }
+            if (changedweather == false)
+            {
+                return changedweather;
+            }
 
-			// Totem activation stuff
-			Game1.screenGlow = false;
+            Game1.pauseThenMessage(2000, message);
+
+            // Totem activation stuff
+            Game1.screenGlow = false;
 			who.currentLocation.playSound("thunder");
 			who.canMove = false;
 			switch (totemtype)

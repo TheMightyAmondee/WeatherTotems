@@ -57,16 +57,12 @@ namespace WeatherTotems
 
         public static void StartGreenRain()
         {
-            string contextId = Game1.player.currentLocation.GetLocationContextId();
-            LocationWeather weather = Game1.netWorldState.Value.GetWeatherForLocation(contextId);
+            LocationWeather weather = Game1.netWorldState.Value.GetWeatherForLocation("Default");
             weather.IsGreenRain = !weather.IsGreenRain;
             weather.IsDebrisWeather = false;
-            if (contextId == "Default")
-            {
-                Game1.isRaining = weather.IsRaining;
-                Game1.isGreenRain = weather.IsGreenRain;
-                Game1.isDebrisWeather = false;
-            }
+            Game1.isRaining = weather.IsRaining;
+            Game1.isGreenRain = weather.IsGreenRain;
+            Game1.isDebrisWeather = false;
         }
         private void ButtonPressed(object sender, ButtonPressedEventArgs e)
 		{
@@ -86,9 +82,17 @@ namespace WeatherTotems
 					&& Game1.player.onBridge.Value == false;
 
 				// Is the item used one of the weather totems?
-				if (Game1.player.CurrentItem.Name != null)
+				if (Game1.player.CurrentItem.Name != null && normal_gameplay == true)
 				{
 					// Yes, can the totem update tomorrows weather?
+
+					if (Game1.currentLocation.GetLocationContextId() == "Default" && Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) == true)
+					{
+                        var hudmessage = new HUDMessage(i18n.string_ErrorFestival(), 3);
+                        this.Monitor.Log("Failed to set weather", LogLevel.Trace);
+                        Game1.addHUDMessage(hudmessage);
+						return;
+                    }
 
 					if (normal_gameplay == true)
 					{

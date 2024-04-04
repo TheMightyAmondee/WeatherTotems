@@ -4,5 +4,6 @@
 	"TheMightyAmondee.WeatherTotems/SnowTotemUse":"The air gets colder around you...",
 	"TheMightyAmondee.WeatherTotems/ThunderTotemUse":"The crackle of electricity fills the air...",
 	"TheMightyAmondee.WeatherTotems/GreenRainTotemUse":"Nature whispers to you...",
-	"TheMightyAmondee.WeatherTotems/Error":"This totem won't work here"
+	"TheMightyAmondee.WeatherTotems/Error":"This totem won't work here",
+	"TheMightyAmondee.WeatherTotems/ErrorFestival":"There's a festival tomorrow"
 }
