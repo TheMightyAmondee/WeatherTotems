@@ -27,3 +27,10 @@ A few notes:
 Safe to uninstall at any time, totems will be turned into error items which can be trashed.
 1. Remove mod from Mods folder
 2. That's it!
+
+### Translation:
+Full translation support is included for both parts of the mod. New translations always welcome! Just send me the files on Nexus when you're done (full credit to you, obviously). Translations are released under optional files unless otherwise specified.
+
+Currently available in:
+- English, by me
+- Chinese, thanks to useplay on Nexus!
