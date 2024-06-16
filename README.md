@@ -36,4 +36,5 @@ Currently available in:
 - Chinese, thanks to useplay on Nexus!
 - German, thanks to kingmomo2 on Nexus!
 - Portuguese, thanks to Loporomen on Nexus!
+- French, thanks to Caranud on Nexus!
 - Russian, thanks to Ztxxi on Nexus! Available [here](https://www.nexusmods.com/stardewvalley/mods/23625)
