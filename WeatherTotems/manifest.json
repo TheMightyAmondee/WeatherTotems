@@ -1,7 +1,7 @@
 {
 	"Name":"Weather Totems",
 	"Author":"TheMightyAmondee",
-	"Version":"1.0.2",
+	"Version":"1.0.3",
 	"Description":"Adds more weather totems",
 	"UniqueID": "TheMightyAmondee.WeatherTotems",
 	"EntryDll":"WeatherTotems.dll",

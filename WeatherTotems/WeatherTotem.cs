@@ -10,6 +10,8 @@ using StardewValley.GameData.LocationContexts;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI.Utilities;
 using xTile.Dimensions;
+using static StardewValley.Minigames.CraneGame;
+using System.Collections.Generic;
 
 namespace WeatherTotems
 {
@@ -50,12 +52,12 @@ namespace WeatherTotems
 
         public static bool UseWeatherTotem(Farmer who, int totemtype)
 		{
-            var multiplayer = helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer").GetValue();
 			bool changedweather = false;
 
             // Get location context
             var location_context = Game1.currentLocation.GetLocationContextId();		
 			string message = "Nothing";
+            var totemname = "";
 			
 			// Get asset key for animation sprites
 			string assetkey = helper.ModContent.GetInternalAssetName("assets/loosesprites.png").Name;
@@ -65,6 +67,7 @@ namespace WeatherTotems
                 case 0:
                     SetWeather("Sun");
                     message = i18n.string_SunTotemUse();
+                    totemname = "TheMightyAmondee.WeatherTotemsCP_SunTotem";
                     changedweather = true;
                     break;
                 case 1:
@@ -74,6 +77,7 @@ namespace WeatherTotems
                         {
                             SetWeather("Wind");
                             message = i18n.string_WindTotemUse();
+                            totemname = "TheMightyAmondee.WeatherTotemsCP_WindTotem";
                             changedweather = true;
                             break;
                         }
@@ -86,6 +90,7 @@ namespace WeatherTotems
                         {
                             SetWeather("Snow");
                             message = i18n.string_SnowTotemUse();
+                            totemname = "TheMightyAmondee.WeatherTotemsCP_SnowTotem";
                             changedweather = true;
                             break;
                         }
@@ -99,6 +104,7 @@ namespace WeatherTotems
                         {
                             SetWeather("Storm");
                             message = i18n.string_ThunderTotemUse();
+                            totemname = "TheMightyAmondee.WeatherTotemsCP_ThunderTotem";
                             changedweather = true;
                             break;
                         }
@@ -109,6 +115,7 @@ namespace WeatherTotems
                     {
                         SetWeather("GreenRain");
                         message = i18n.string_GreenRainTotemUse();
+                        totemname = "TheMightyAmondee.WeatherTotemsCP_GreenRainTotem";
                         changedweather = true;
                     }
                     break;
@@ -153,7 +160,7 @@ namespace WeatherTotems
 			{
 				void showsprites(string asset, Microsoft.Xna.Framework.Rectangle area)
                 {
-					multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(asset, area, 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
+					Game1.Multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(asset, area, 9999f, 1, 999, who.Position + new Vector2(0f, -128f), flicker: false, flipped: false, 1f, 0.01f, Color.White * 0.8f, 2f, 0.01f, 0f, 0f)
 					{
 						motion = new Vector2((float)Game1.random.Next(-10, 11) / 10f, -2f),
 						delayBeforeAnimationStart = i * 200
@@ -165,57 +172,48 @@ namespace WeatherTotems
 					switch (totemtype)
 					{
 						case 0:
-							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 16, 24, 24));
+							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(0, 0, 24, 24));
 							break;
 						case 1:
-							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(24, 16, 51, 24));
+							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(24, 0, 51, 24));
 							break;
 						case 2:
-							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(75, 16, 25, 25));
+							showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(75, 0, 25, 25));
 							break;
 						case 3:
 							showsprites("LooseSprites\\Cursors", whichareaforthunderanimation);
                             break;
                         case 4:
-                            showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(100, 17, 20, 24));
+                            showsprites(assetkey, new Microsoft.Xna.Framework.Rectangle(100, 0, 20, 24));
                             break;
-					}
+                    }
 				}
 
 				showspritefromtotemtype(new Microsoft.Xna.Framework.Rectangle(645, 1079, 36, 56));
 				showspritefromtotemtype(new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33));
 				showspritefromtotemtype(new Microsoft.Xna.Framework.Rectangle(648, 1045, 52, 33));				
 			}
-            Microsoft.Xna.Framework.Rectangle totemarea(int whichtotem)
+
+            TemporaryAnimatedSprite totemanimsprite = new TemporaryAnimatedSprite(0, 9999f, 1, 999, Game1.player.Position + new Vector2(0f, -96f), false, false, false, 0f)
             {
-                switch (whichtotem)
-                {
-                    case 0:
-                        return new Microsoft.Xna.Framework.Rectangle(0, 0, 16, 16);
-                    case 1:
-                        return new Microsoft.Xna.Framework.Rectangle(16, 0, 16, 16);
-                    case 2:
-                        return new Microsoft.Xna.Framework.Rectangle(32, 0, 16, 16);
-                    case 3:
-                        return new Microsoft.Xna.Framework.Rectangle(48, 0, 16, 16);
-                    default:
-                        return new Microsoft.Xna.Framework.Rectangle(64, 0, 16, 16);
-                }
-            }
-            multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite(assetkey,totemarea(totemtype), 9999f, 1, 999, Game1.player.Position + new Vector2(0f, -96f), flicker: false, flipped: false, 1f, 0.0075f, Color.White * 0.8f, 4f, 0.015f, 0f, 0f)
-			{
-				motion = new Vector2(0f, -7f),
-				acceleration = new Vector2(0f, 0.1f),
-				scaleChange = 0.015f,
-				alpha = 1f,
-				alphaFade = 0.0075f,
-				shakeIntensity = 1f,
-				initialPosition = Game1.player.Position + new Vector2(0f, -96f),
-				xPeriodic = true,
-				xPeriodicLoopTime = 1000f,
-				xPeriodicRange = 4f,
-				layerDepth = 1f
-			}); ;
+                motion = new Vector2(0f, -7f),
+                acceleration = new Vector2(0f, 0.1f),
+                scaleChange = 0.015f,
+                alpha = 1f,
+                alphaFade = 0.0075f,
+                shakeIntensity = 1f,
+                initialPosition = Game1.player.Position + new Vector2(0f, -96f),
+                xPeriodic = true,
+                xPeriodicLoopTime = 1000f,
+                xPeriodicRange = 4f,
+                layerDepth = 1f
+            };
+            totemanimsprite.CopyAppearanceFromItemId(totemname, 0);
+
+            Game1.Multiplayer.broadcastSprites(who.currentLocation, new TemporaryAnimatedSprite[]
+            {
+                totemanimsprite
+            });
 
             DelayedAction.playSoundAfterDelay("rainsound", 2000);
 			return changedweather;
